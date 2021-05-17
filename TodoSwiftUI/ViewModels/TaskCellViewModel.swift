@@ -16,18 +16,16 @@ class TaskCellViewModel: ObservableObject, Identifiable {
    
    init(task: TaskModel) {
       self.task =  task
-      $task
-         .map { task in
-            task.completed ? "checkmark.circle.fill" : "circle"
-         }
-         .assign(to: \.completionStateIconName, on: self)
-         .store(in: &cancelables)
+      $task.map { task in
+         task.completed ? "checkmark.circle.fill" : "circle"
+      }
+      .assign(to: \.completionStateIconName, on: self)
+      .store(in: &cancelables)
       
-      $task
-         .map { task in
-            task.id
-         }
-         .assign(to: \.id, on: self)
-         .store(in: &cancelables)
+      $task.map { task in
+         task.id
+      }
+      .assign(to: \.id, on: self)
+      .store(in: &cancelables)
    }
 }
